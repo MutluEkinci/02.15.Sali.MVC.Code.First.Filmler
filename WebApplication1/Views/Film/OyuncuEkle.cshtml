@@ -1,0 +1,34 @@
+﻿@model WebApplication1.Models.ViewModel.FilmOyuncuVM
+@{
+    ViewBag.Title = "OyuncuEkle";
+}
+
+<h2>OyuncuEkle</h2>
+
+<h3>@Model.FilmAdi</h3>
+
+<table>
+    <input type="hidden" name="hdnOyuncuID" value="" id="hdnOyuncuID" />
+    @foreach (var item in Model.FilmOyuncuları)
+    {
+        using (Html.BeginForm("FilmOyuncuGuncelle", "Film", FormMethod.Get))
+        {
+            <tr>
+                <td>@item.Oyuncu.OyuncuAdi</td>
+                <td>@Html.DropDownListFor(m => m.OyuncuId, (SelectList)Model.Oyuncular)</td>
+                <td>
+                    <input type="hidden" name="EOID" value="@item.OyuncuID" id="EOID" />
+                    <input type="hidden" name="FID" value="@Model.FilmID" id="FID" />
+                    <input type="submit" name="name" value="Guncelle" />
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+@using (Html.BeginForm("OyuncuEkle", "Film", FormMethod.Post))
+{
+    @Html.DropDownListFor(m => m.OyuncuId, (SelectList)Model.Oyuncular)
+    @Html.HiddenFor(m => m.FilmID)
+    <input type="submit" value="Oyuncu Ekle" />
+}

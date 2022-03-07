@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebApplication1.Models.Film>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Film", FormMethod.Get))
+{
+    @Html.TextBox("ara")
+    <input type="submit" name="name" value="Ara" />
+}
+<table border="1">
+    @foreach (var film in Model)
+    {
+        <tr>
+            <td>@film.FilmAdi </td>
+            <td>@film.Süre</td>
+            <td>@film.Tur.TurAdi</td>
+            <td>@film.Yapimci.YapimciAdi</td>
+            <td>@Html.ActionLink("Oyuncu Ekle", "OyuncuEkle", new { id = film.FilmID })</td>
+            <td>@Html.ActionLink("Güncelle", "Guncelle", "Film", new { id = film.FilmID }, new { target = "_blank" })</td>
+            <td>@Html.ActionLink("Sil", "sil", "Film", new { id = film.FilmID }, new { target = "_blank" })</td>
+            <td></td>
+        </tr>
+    }
+    @*Bizim kullandığımız sistemde eager loading ondan lazy loading yapmamız lazım yoksa film.tur.turadi gibi nav prop kullanamayız.*@
+    @*nav property önüne virtual koyarsak bunu çözeriz.*@
+</table>
+
+
+
+

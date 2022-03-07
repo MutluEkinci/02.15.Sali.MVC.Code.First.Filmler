@@ -1,0 +1,34 @@
+﻿@model WebApplication1.Models.Film
+@{
+    ViewBag.Title = "Ekle";
+}
+
+<h2>Ekle</h2>
+
+<table border="1">
+    @using (Html.BeginForm("Ekle", "Film", FormMethod.Post))
+     {
+        <tr>
+            <td>@Html.LabelFor(m=>m.FilmAdi)</td> @*film adının ismini modelden çektik*@
+            <td>@Html.TextBoxFor(m => m.FilmAdi)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.TurID)</td>
+            @*<td>@Html.TextBoxFor(m => m.TurID)</td>*@
+            <td>@Html.DropDownListFor(m => m.TurID, (SelectList)ViewBag.Turler)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.YapimciID)</td>
+            @*<td>@Html.TextBoxFor(m => m.YapimciID)</td>*@
+            <td>@Html.DropDownListFor(m => m.YapimciID, (SelectList)ViewBag.Yapimcilar)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Süre)</td>
+            <td>@Html.TextBoxFor(m => m.Süre)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Kaydet"</td>
+        </tr>
+     }   
+</table>

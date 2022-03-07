@@ -1,0 +1,39 @@
+﻿@model WebApplication1.Models.Film
+@{
+    ViewBag.Title = "Guncelle";
+}
+
+<h2>Guncelle</h2>
+
+
+<table border="1">
+    @using (Html.BeginForm("Guncelle", "Film", FormMethod.Post))
+    {
+        <tr>
+            <td>@Html.LabelFor(m => m.FilmID)</td>
+            <td>@Html.TextBoxFor(m => m.FilmID)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.FilmAdi)</td> @*film adının ismini modelden çektik*@
+            <td>@Html.TextBoxFor(m => m.FilmAdi)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.TurID)</td>
+            @*<td>@Html.TextBoxFor(m => m.TurID)</td>*@
+            <td>@Html.DropDownListFor(m => m.TurID, (SelectList)ViewBag.Turler)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.YapimciID)</td>
+            @*<td>@Html.TextBoxFor(m => m.YapimciID)</td>*@
+            <td>@Html.DropDownListFor(m => m.YapimciID, (SelectList)ViewBag.Yapimcilar)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Süre)</td>
+            <td>@Html.TextBoxFor(m => m.Süre)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Güncelle"</td>
+        </tr>
+    }
+</table>

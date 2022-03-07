@@ -1,0 +1,46 @@
+﻿@model WebApplication1.Models.ViewModel.Film_VM
+@{
+    ViewBag.Title = "EkleVM";
+}
+
+<h2>EkleVM</h2>
+
+<table border="1">
+    @using (Html.BeginForm("EkleVM", "Film", FormMethod.Post))
+    {
+        <tr>
+            <td>@Html.LabelFor(m => m.Film.FilmAdi)</td> @*film adının ismini modelden çektik*@
+            <td>@Html.TextBoxFor(m => m.Film.FilmAdi)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Film.TurID)</td>
+            @*<td>@Html.TextBoxFor(m => m.TurID)</td>*@
+            <td>@Html.DropDownListFor(m => m.Film.TurID, (SelectList)Model.Turler)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Film.YapimciID)</td>
+            @*<td>@Html.TextBoxFor(m => m.YapimciID)</td>*@
+            <td>@Html.DropDownListFor(m => m.Film.YapimciID, (SelectList)Model.Yapimcilar)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Film.Süre)</td>
+            <td>@Html.TextBoxFor(m => m.Film.Süre)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Kaydet"</td>
+        </tr>
+    }
+
+    @using (Html.BeginForm("OyuncuEkle", "Film", FormMethod.Post))
+    {
+        @*foreach (var item in Model.Oyuncular)
+        {
+            @item
+        }*@
+        <tr>
+            <td>@Html.DropDownListFor(m => m.OyuncuID, (SelectList)Model.Oyuncular)</td>
+            @*<td><input type="submit" value="Ekle"</td>*@
+        </tr>
+    }
+</table>
